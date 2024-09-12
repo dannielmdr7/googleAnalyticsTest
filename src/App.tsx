@@ -3,38 +3,37 @@ import './App.css';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 
-import ReactGA from 'react-ga4';
-ReactGA.initialize('G-R2R4010YVC')
+// import ReactGA from 'react-ga4';
+// ReactGA.initialize('G-R2R4010YVC')
 
 function App() {
 
   useEffect(() => {
     console.log('Daniel emitiendo pageview');
+    window.gtag('config', 'G-R2R4010YVC', {
+      page_path: window.location.pathname,
+    });
 
-    ReactGA.send({ hitType: "pageview", page: window.location.pathname });
   }, []);
 
   const handleClick1 = () => {
-    console.log('Daniel emitiendo evento 1');
-    
-    ReactGA.event({
-      category: 'User 1',
-      action: 'Clicked a button'
+    console.log('Daniel emitiendo evento');
+    window.gtag('event', 'button_click_params', {
+      value: 1,
+      userId:12312,
+      userName:'Daniel Montenegro',
+      companyId:42,
+      sessionId:'123123123'
     });
+
   }
   const handleClick2 = () => {
     console.log('Daniel emitiendo evento 2');
-    ReactGA.event({
-      category: 'User 2',
-      action: 'Clicked a button'
-    });
+
   }
   const handleClick3 = () => {
     console.log('Daniel emitiendo evento 3');
-    ReactGA.event({
-      category: 'User 3',
-      action: 'Clicked a button'
-    });
+
   }
 
 
@@ -71,3 +70,5 @@ function App() {
 }
 
 export default App
+
+
